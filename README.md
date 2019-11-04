@@ -20,6 +20,26 @@
 a. Create a `Human` class with two properties:
 - `name` of type String
 - `age` of type Int.
+a + b.
+```
+class Human: CustomStringConvertible {
+    var description: String {
+      return "\(name) is \(age) years old"
+    }
+    
+    var name: String
+    var age: Int
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+}
+var nicolas = Human(name: "Nicolas", age: 18)
+var annika = Human(name: "Annika", age: 0)
+
+print(annika,"and", nicolas)
 ```
 Then create an initializer for the class and create two `Human` instances.
 
@@ -31,12 +51,84 @@ if their names and ages are identical to one another. Print the result of a bool
 evaluating whether or not your two previously initialized `Human` objects are equal to eachother
 (using ==). Then print the result of a boolean expression evaluating whether or not your two
 previously initialized `Human` objects are not equal to eachother (using !=).
+```
 
+class Human: Equatable {
+    
+    static func == (lhs: Human, rhs: Human) -> Bool {
+        if lhs.age == rhs.age {
+            print("They are both the same age")
+        } else {
+            print("They are not the same age")
+        }
+        
+        if lhs.age != rhs.age {
+            print("They are not the same age")
+        } else {
+            print("they are the same")
+        }
+        return (lhs == rhs)
+    }
+    
+ var name: String
+   var age: Int
+  
+  init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+  
+    
+}
+var annika = Human(name: "Annika", age: 1)
+var nicolas = Human(name: "Nicolas", age: 18)
+```
 d. Make the `Human` class adopt the `Comparable` protocol. One `Human` is greater than another `Human` if its age is bigger. Create another
 three instances of a `Human`, then create an array called people of type [`Human`] with all of the
 `Human` objects that you have initialized.
 
 Create a new array called sortedPeople of type [`Human`] that is the people array sorted by age.
+```
+class Human: Comparable {
+    static func == (lhs: Human, rhs: Human) -> Bool {
+         lhs.age == rhs.age
+    }
+    
+    static func > (lhs: Human, rhs: Human) -> Bool {
+         lhs.age > rhs.age
+    }
+    
+
+    
+    static func < (lhs: Human, rhs: Human) -> Bool {
+        lhs.age < rhs.age
+    }
+
+ 
+  
+    
+ var name: String
+   var age: Int
+  
+  init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+  
+    
+}
+var annika = Human(name: "Annika", age: 1)
+var nicolas = Human(name: "Nicolas", age: 18)
+var tanyaJr = Human(name: "Tanya", age: 37)
+var antonio = Human(name: "Antonio", age: 21)
+var liana = Human(name: "Liana", age: 3)
+
+var people: [Human] = [annika, nicolas, tanyaJr, antonio, liana]
+var peopleSorted = people.sorted(by: {$0.age < $1.age})
+print(peopleSorted)
+```
 
 </br> </br>
 
